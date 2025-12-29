@@ -12,7 +12,7 @@ print("Manjkajoče vrednosti:\n", missing)
 
 df["TotalCharges"] = pd.to_numeric(df["TotalCharges"], errors="coerce")
 
-df["TotalCharges"].fillna(df["TotalCharges"].median(), inplace=True)
+df.loc[df["tenure"] == 0, "TotalCharges"] = 0
 
 df["SeniorCitizen"] = df["SeniorCitizen"].map({0: "No", 1: "Yes"})
 
