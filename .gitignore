@@ -1,2 +1,24 @@
+
+# Virtual environments
+venv/
+env/
+.venv/
+
+# PyCharm
+.idea/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Jupyter
+.ipynb_checkpoints/
+
+# pyenv
+.python-version
+
+# pyvenv
+pyvenv.cfg
+
 .vscode/settings.json
-venv
