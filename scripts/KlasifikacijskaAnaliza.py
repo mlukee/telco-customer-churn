@@ -42,24 +42,21 @@ for col in numeric_cols:
     plt.show()
 
 categorical_cols = df.select_dtypes(include="object").columns.drop(["Churn", "customerID"])
-for col in categorical_cols:
-    contingency = pd.crosstab(df[col], df["Churn"])
-    chi2, p, _, _ = chi2_contingency(contingency)
-    p_display = "< 0.001" if p < 0.001 else round(p, 3)
-    results.append({
-        "Spremenljivka": col,
-        "Tip": "Kategorijska",
-        "Test": "Chi-square",
-        "P-vrednost": p_display,
-        "P_sort": 0.0009 if p < 0.001 else p
-    })
 
-    prop = contingency.div(contingency.sum(axis=1), axis=0)
-    prop.plot(kind="bar", stacked=True)
-    plt.title(f"{col} glede na odhod strank (Churn)")
-    plt.ylabel("Delež strank")
-    plt.xlabel(col)
-    plt.legend(title="Odhod")
+
+for col in categorical_cols:
+    plt.figure(figsize=(10, 6))
+    sns.boxplot(x=col, y='MonthlyCharges', hue='Churn', data=df)
+    plt.title(f'MonthlyCharges by {col} and Churn')
+    plt.xticks(rotation=45)
+    plt.tight_layout()
+    plt.show()
+
+    plt.figure(figsize=(10, 6))
+    sns.boxplot(x=col, y='tenure', hue='Churn', data=df)
+    plt.title(f'Tenure by {col} and Churn')
+    plt.xticks(rotation=45)
+    plt.tight_layout()
     plt.show()
 
 bivariate_results = pd.DataFrame(results)
