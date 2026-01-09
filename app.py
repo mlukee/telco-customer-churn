@@ -254,7 +254,7 @@ if model:
         # Dinamični razpon za druge spremenljivke
         min_val = input_df[sim_feature].iloc[0] * 0.5
         max_val = input_df[sim_feature].iloc[0] * 1.5
-        sim_values = np.linspace(min_val, max_val, 50)
+        sim_values = np.linspace(15, 9000, 300)
 
     sim_preds = []
     temp_df = input_df.copy()
@@ -281,8 +281,8 @@ if model:
     ax2.grid(True, linestyle="--", alpha=0.5)
 
     # Nastavimo meje x-osi, če gre za MonthlyCharges
-    if sim_feature == 'MonthlyCharges':
-        ax2.set_xlim(0, 125)
+    # if sim_feature == 'MonthlyCharges':
+    #     ax2.set_xlim(0, 125)
 
     st.pyplot(fig2)
 
